@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../../assets/logo.svg';
 
 const Header = () => {
     const navList = <>
-        <Link to='/'><li>Home</li></Link>
+        <Link to='/'><li className='font-semibold'>Home</li></Link>
     </>;
 
     return (
@@ -18,7 +19,7 @@ const Header = () => {
                             {navList}
                         </ul>
                     </div>
-                    <a href="/" className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <img src={logo} alt="Logo" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
@@ -26,7 +27,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a href="/" className="btn">Get started</a>
+                    <button className="btn btn-outline btn-error">Appointment</button>
                 </div>
             </div>
         </div>
