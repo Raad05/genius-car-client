@@ -1,5 +1,4 @@
 import React from 'react';
-import './Banner.css';
 import bimg1 from '../../../../assets/images/banner/1.jpg';
 import bimg2 from '../../../../assets/images/banner/2.jpg';
 import bimg3 from '../../../../assets/images/banner/3.jpg';
@@ -36,7 +35,7 @@ const Banner = () => {
 
     return (
         <div className='banner'>
-            <div className="carousel w-full">
+            <div className="carousel w-full py-10">
                 {
                     bannerItems.map(bannerItem => <BannerItem
                         image={bannerItem.image}

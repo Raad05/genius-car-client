@@ -1,10 +1,11 @@
 import React from 'react';
+import './BannerItem.css';
 
 const BannerItem = ({ image, id, left, right }) => {
     return (
         <div id={`slide${id}`} className="carousel-item relative w-full">
             <div className='img-gradient'>
-                <img alt="Banner-img" src={image} className="w-full" />
+                <img alt="Banner-img" src={image} className="w-full rounded-xl" />
             </div>
             <div className="absolute flex justify-end transform -translate-y-1/2 right-5 bottom-0">
                 <a href={`#slide${left}`} className="btn btn-circle btn-accent border-none mx-2">❮</a>
