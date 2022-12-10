@@ -1,9 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext();
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -27,6 +27,11 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, fbProvider);
     }
 
+    // Login
+    const login = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             console.log(currentUser);
@@ -36,7 +41,7 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, [])
 
-    const authInfo = { user, loading, createUser, googleSignUp, fbSignUp };
+    const authInfo = { user, loading, createUser, googleSignUp, fbSignUp, login, auth };
 
     return (
         <div className='auth-provider'>

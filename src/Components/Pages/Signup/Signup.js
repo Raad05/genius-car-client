@@ -4,6 +4,10 @@ import loginImg from '../../../assets/images/login/login.svg';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebookF } from 'react-icons/fa';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import { getAuth, updateProfile } from 'firebase/auth';
+import app from '../../../firebase/firebase.config';
+
+const auth = getAuth(app);
 
 const Signup = () => {
     const { createUser, googleSignUp, fbSignUp } = useContext(AuthContext);
@@ -19,11 +23,25 @@ const Signup = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
+                updateUser();
+                form.reset();
                 console.log(user);
             })
             .catch(error => {
                 console.error(error);
             });
+
+        const updateUser = () => {
+            updateProfile(auth.currentUser, {
+                displayName: name
+            })
+                .then(() => {
+                    console.log('Username updated!');
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
     }
 
     const handleGoogleSignup = () => {
@@ -77,7 +95,7 @@ const Signup = () => {
                                 <input type="password" name='password' placeholder="Your Password" className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-error text-white font-semibold" type='submit'>Sign in</button>
+                                <button className="btn btn-error text-white font-semibold" type='submit'>Sign Up</button>
                             </div>
                             <div className="form-control mt-6">
                                 <p className='text-center font-semibold mb-3'>Or Sign Up with</p>
