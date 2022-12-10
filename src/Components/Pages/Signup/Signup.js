@@ -6,7 +6,7 @@ import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Signup = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, googleSignUp } = useContext(AuthContext);
 
     const handleSignup = (event) => {
         event.preventDefault();
@@ -17,6 +17,15 @@ const Signup = () => {
         console.log(name, email, password);
 
         createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        googleSignUp()
             .then(result => {
                 const user = result.user;
                 console.log(user);

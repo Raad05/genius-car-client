@@ -8,24 +8,28 @@ import BannerItem from '../BannerItem/BannerItem';
 const Banner = () => {
     const bannerItems = [
         {
+            _id: 1,
             image: bimg1,
             left: 4,
             id: 1,
             right: 2
         },
         {
+            _id: 2,
             image: bimg2,
             left: 1,
             id: 2,
             right: 3
         },
         {
+            _id: 3,
             image: bimg3,
             left: 2,
             id: 3,
             right: 4
         },
         {
+            _id: 4,
             image: bimg4,
             left: 3,
             id: 4,
@@ -38,6 +42,7 @@ const Banner = () => {
             <div className="carousel w-full py-10">
                 {
                     bannerItems.map(bannerItem => <BannerItem
+                        key={bannerItem._id}
                         image={bannerItem.image}
                         id={bannerItem.id}
                         left={bannerItem.left}
