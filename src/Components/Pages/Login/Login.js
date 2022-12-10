@@ -1,13 +1,20 @@
 import React from 'react';
 import loginImg from '../../../assets/images/login/login.svg';
 import { FcGoogle } from 'react-icons/fc';
-import { FaFacebookF } from 'react-icons/fa';
-import { FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+    const handleLogin = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+    }
+
     return (
-        <form className='login'>
+        <form onSubmit={handleLogin} className='login'>
             <div className="hero my-10">
                 <div className="hero-content flex-col lg:flex-row gap-20">
                     <div className="text-center lg:text-left">
@@ -20,16 +27,16 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="Your Email" className="input input-bordered" required />
+                                <input type="email" name='email' placeholder="Your Email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input type="password" placeholder="Your Password" className="input input-bordered" />
+                                <input type="password" name='password' placeholder="Your Password" className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-error text-white font-semibold">Sign in</button>
+                                <button className="btn btn-error text-white font-semibold" type='submit'>Sign in</button>
                             </div>
                             <div className="form-control mt-6">
                                 <p className='text-center font-semibold mb-3'>Or Sign In with</p>

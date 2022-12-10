@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import loginImg from '../../../assets/images/login/login.svg';
 import { FcGoogle } from 'react-icons/fc';
-import { FaFacebookF } from 'react-icons/fa';
-import { FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Signup = () => {
+    const { createUser } = useContext(AuthContext);
+
+    const handleSignup = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, email, password);
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
     return (
-        <form className='login'>
+        <form onSubmit={handleSignup} className='login'>
             <div className="hero my-10">
                 <div className="hero-content flex-col lg:flex-row gap-20">
                     <div className="text-center lg:text-left">
@@ -18,18 +38,24 @@ const Signup = () => {
                             <h1 className='text-center text-3xl font-bold'>Sign Up</h1>
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" name='name' placeholder="Your Name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="Your Email" className="input input-bordered" required />
+                                <input type="email" name='email' placeholder="Your Email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input type="password" placeholder="Your Password" className="input input-bordered" />
+                                <input type="password" name='password' placeholder="Your Password" className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-error text-white font-semibold">Sign in</button>
+                                <button className="btn btn-error text-white font-semibold" type='submit'>Sign in</button>
                             </div>
                             <div className="form-control mt-6">
                                 <p className='text-center font-semibold mb-3'>Or Sign Up with</p>

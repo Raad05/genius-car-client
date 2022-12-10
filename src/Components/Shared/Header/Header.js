@@ -4,7 +4,8 @@ import logo from '../../../assets/logo.svg';
 
 const Header = () => {
     const navList = <>
-        <Link to='/'><li className='font-semibold'>Home</li></Link>
+        <Link to='/'><li className='font-semibold p-2'>Home</li></Link>
+        <Link to='/login'><li className='font-semibold p-2'>Login</li></Link>
     </>;
 
     return (
