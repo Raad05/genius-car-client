@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import loginImg from '../../../assets/images/login/login.svg';
 import { FcGoogle } from 'react-icons/fc';
-import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF } from 'react-icons/fa';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Signup = () => {
-    const { createUser, googleSignUp } = useContext(AuthContext);
+    const { createUser, googleSignUp, fbSignUp } = useContext(AuthContext);
 
     const handleSignup = (event) => {
         event.preventDefault();
@@ -24,8 +24,21 @@ const Signup = () => {
             .catch(error => {
                 console.error(error);
             });
+    }
 
+    const handleGoogleSignup = () => {
         googleSignUp()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    const hangleFacebookSignup = () => {
+        fbSignUp()
             .then(result => {
                 const user = result.user;
                 console.log(user);
@@ -69,9 +82,8 @@ const Signup = () => {
                             <div className="form-control mt-6">
                                 <p className='text-center font-semibold mb-3'>Or Sign Up with</p>
                                 <div className='flex justify-center'>
-                                    <button className='mx-3 bg-gray-200 rounded-full p-3'><FcGoogle size={20}></FcGoogle></button>
-                                    <button className='mx-3 bg-gray-200 rounded-full p-3 text-blue-600'><FaFacebookF size={20}></FaFacebookF></button>
-                                    <button className='mx-3 bg-gray-200 rounded-full p-3 text-blue-500'><FaLinkedinIn size={20}></FaLinkedinIn></button>
+                                    <button onClick={handleGoogleSignup} className='mx-3 bg-gray-200 rounded-full p-3'><FcGoogle size={20}></FcGoogle></button>
+                                    <button onClick={hangleFacebookSignup} className='mx-3 bg-gray-200 rounded-full p-3 text-blue-600'><FaFacebookF size={20}></FaFacebookF></button>
                                 </div>
                                 <p className='text-center mt-6 text-sm text-gray-500'>Already have an account? <Link to='/login' className='text-orange-400 font-semibold'>Login</Link></p>
                             </div>

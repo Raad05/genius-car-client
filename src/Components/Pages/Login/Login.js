@@ -1,7 +1,7 @@
 import React from 'react';
 import loginImg from '../../../assets/images/login/login.svg';
 import { FcGoogle } from 'react-icons/fc';
-import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -43,7 +43,6 @@ const Login = () => {
                                 <div className='flex justify-center'>
                                     <button className='mx-3 bg-gray-200 rounded-full p-3'><FcGoogle size={20}></FcGoogle></button>
                                     <button className='mx-3 bg-gray-200 rounded-full p-3 text-blue-600'><FaFacebookF size={20}></FaFacebookF></button>
-                                    <button className='mx-3 bg-gray-200 rounded-full p-3 text-blue-500'><FaLinkedinIn size={20}></FaLinkedinIn></button>
                                 </div>
                                 <p className='text-center mt-6 text-sm text-gray-500'>New to Genius Car? <Link to='/signup' className='text-orange-400 font-semibold'>Sign Up</Link></p>
                             </div>
