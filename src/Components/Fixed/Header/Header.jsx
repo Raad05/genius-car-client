@@ -5,7 +5,7 @@ import logo from '../../../assets/logo.svg';
 
 const Header = () => {
     return (
-        <div className='navbar d-flex justify-around p-5'>
+        <div className='navbar flex justify-around p-5'>
             <Link><img src={logo} alt="img" className='w-20' /></Link>
             <div className='nav-items'>
                 <Link className='p-3 text-gray-500 font-bold'>Home</Link>
